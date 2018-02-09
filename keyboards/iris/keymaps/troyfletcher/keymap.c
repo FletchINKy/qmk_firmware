@@ -18,6 +18,11 @@ enum custom_keycodes {
   MOUSE,
   NUMPAD,
   ADJUST,
+  EMAIL, // macro for typing my email
+  VIMWRITE, // macro for writing in Vim
+  TMUXLOWERRUN, // macro for running code between vim and another tmux pane
+  TMUXLASTWINDOW, // macro for running code between vim and another tmux pane
+  TMUXSWAPPANE, // macro for running code between vim and another tmux pane
 };
 
 #define KC_ KC_TRNS
@@ -26,13 +31,25 @@ enum custom_keycodes {
 #define KC_LOWR LOWER
 #define KC_RASE RAISE
 #define KC_MOUS MO(_MOUSE)
-#define KC_NUMP MO(_NUMPAD)
+#define KC_NUMP TT(_NUMPAD)
 #define KC_RST RESET
 #define KC_BL_S BL_STEP
-#define KC_ALTTB LALT(KC_TAB)
-#define KC_BRTBR LCTL(KC_TAB)
-#define KC_BRTBL LSFT(LCTL(KC_TAB))
-#define KC_CTLESC CTL_T(KC_ESC)
+#define KC_EMAL EMAIL
+#define KC_VIMW VIMWRITE
+#define KC_TMLR TMUXLOWERRUN
+#define KC_TMLW TMUXLASTWINDOW
+#define KC_TMSP TMUXSWAPPANE
+
+#define KC_ALTTB LALT(KC_TAB)       // Alt + Tab, switch to last window
+#define KC_BRTBR LCTL(KC_TAB)       // Browser tab right
+#define KC_BRTBL LSFT(LCTL(KC_TAB)) // Browser tab left
+#define KC_CTLESC CTL_T(KC_ESC)     // Control when held, ESC when tapped
+#define KC_ALTENT ALT_T(KC_ENT)     // Alt when held, Enter when tapped
+#define KC_SFTBKS SFT_T(KC_BSPC)    // Shift when held, Backspace when tapped
+#define KC_PTTY LSFT(KC_INS)        // Paste into a putty terminal
+#define KC_CLOS LALT(KC_F4)         // Close
+#define KC_CADL LCTL(LALT(KC_DEL))  // Ctrl+Alt+Del
+#define KC_WNLK LGUI(KC_L)          // Windows Lock
 
 //  _____                _____ _      _       _               
 // |_   _| __ ___  _   _|  ___| | ___| |_ ___| |__   ___ _ __ 
@@ -51,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
      RALT, A  , S  , D  , F  , G  ,                H  , J  , K  , L  ,SCLN,QUOT,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-     LSFT, Z  , X  , C  , V  , B  ,NUMP,     BSLS, N  , M  ,COMM,DOT ,SLSH,RBRC,
+   SFTBKS, Z  , X  , C  , V  , B  ,NUMP,     BSLS, N  , M  ,COMM,DOT ,SLSH,RBRC,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                       LGUI,CTLESC,LOWR,       SPC,RASE,BSLS
   //                  `----+----+----'        `----+----+----'
@@ -59,15 +76,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = KC_KEYMAP(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-     TILD,ESC,  AT ,HASH,DLR ,PERC,               CIRC,AMPR,ASTR,LPRN,RPRN,BSPC,
+     TILD,EXLM, AT ,HASH,DLR ,PERC,               CIRC,AMPR,ASTR,LPRN,RPRN,BSPC,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,ESC ,MOUS,ENT ,APP , 5  ,                6  ,MUTE, 8  , 9  ,MPLY,LPRN,
+     TAB ,ESC ,MOUS,ENT ,APP ,PTTY,                   ,MUTE,TMSP,TMLW,MPLY,LPRN,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
     LCTL,ALTTB,TAB,RGHT,BRTBL,BRTBR,              LEFT,DOWN ,UP ,RGHT,VOLD,VOLU,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-     BL_S,    ,    ,    ,DOWN,LCBR,LPRN,     DLR, DEL, BSPC, P2 , P3 ,PERC,RPRN,
+     LSFT,NUMP,    ,    ,    ,    ,    ,     DLR, DEL, BSPC,    ,    ,PERC,RPRN,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                           ,    ,    ,         DEL ,    , P0 
+                           ,    ,LOWR,             ,    ,    
   //                  `----+----+----'        `----+----+----'
   ),
 
@@ -75,13 +92,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
      F12 , F1 , F2 , F3 , F4 , F5 ,                F6 , F7 , F8 , F9 ,F10 ,F11 ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,    ,EQL ,AMPR,TILD,               HOME,UNDS,ASTR,END ,PLUS,    ,
+         ,EMAL,VIMW,EQL ,AMPR,TILD,               HOME,UNDS,ASTR,END ,PLUS,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,AT  ,MNXT,MINS,    ,GRAVE,              HOME,PGDN,PGUP,END ,CIRC,BSLS,
+     LCTL,AT  ,MNXT,MINS,    ,GRAVE,              HOME,PGDN,PGUP,END ,CIRC,BSLS,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-         ,    ,    ,    ,    ,EXLM,    ,         ,PLUS,HASH,    ,    ,    ,    ,
+     LSFT,    ,CLOS,CALC,TMLR,EXLM,CADL,     WNLK,PLUS,HASH,    ,    ,    ,    ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                           ,    ,    ,             ,    ,    
+                           ,RALT,    ,             ,RASE,    
   //                  `----+----+----'        `----+----+----'
   ),
 
@@ -89,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
          ,    ,    ,    ,    ,    ,               ACL0,ACL1,ACL2, F9 ,F10 ,RST ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,                   ,    ,    ,    ,    ,    ,
+         ,    ,MOUS,    ,    ,    ,                   ,    ,    ,SLCK,PSCR,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
          ,    ,    ,    ,    ,    ,               MS_L,MS_D,MS_U,MS_R,BTN1,BTN2,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
@@ -101,15 +118,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NUMPAD] = KC_KEYMAP(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-         ,    ,    ,    ,    ,    ,                   ,    ,    ,    ,    ,    ,
+     F12 , F1 , F2 , F3 , F4 , F5 ,                F6 , F7 , F8 , F9 ,F10 ,F11 ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,               SLSH, 7  , 8  , 9  ,MINS,    ,
+     TAB ,PGUP,BRTBL,UP,BRTBR,DEL ,               SLSH, 7  , 8  , 9  ,MINS,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,               ASTR, 4  , 5  , 6  ,PLUS,    ,
+   ALTENT,PGDN,LEFT,DOWN,RGHT,BSPC,               ASTR, 4  , 5  , 6  ,PLUS,    ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,    ,         ,BSPC, 1  , 2  , 3  ,ENT ,    ,
+     LSFT,UNDO,CUT ,COPY,PASTE,   ,NUMP,         ,BSPC, 1  , 2  , 3  ,ENT ,    ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                           ,    ,    ,          0  , DOT,    
+                          ,CTLESC,SPC ,          0  , DOT,    
   //                  `----+----+----'        `----+----+----'
   ),
 
@@ -174,6 +191,49 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         layer_on(_ADJUST);
       } else {
         layer_off(_ADJUST);
+      }
+      return false;
+      break;
+    case EMAIL:
+      if (record->event.pressed) {
+        SEND_STRING("fletcher.troy@gmail.com");
+      }
+      return false;
+    case VIMWRITE:
+      if (record->event.pressed) {
+        SEND_STRING(SS_TAP(X_ESCAPE));
+        SEND_STRING(":w");
+        SEND_STRING(SS_TAP(X_ENTER));
+      }
+      return false;
+    case TMUXLOWERRUN: // Run vim selected line in lower pane
+      if (record->event.pressed) {
+        SEND_STRING(SS_TAP(X_ENTER));
+        _delay_ms(200);
+        SEND_STRING(SS_LCTRL("a"));
+        SEND_STRING("o");
+        _delay_ms(100);
+        SEND_STRING(SS_LCTRL("a"));
+        SEND_STRING("]");
+        _delay_ms(100);
+        SEND_STRING(SS_TAP(X_ENTER));
+        SEND_STRING(SS_LCTRL("a"));
+        SEND_STRING("o");
+        SEND_STRING("`>");
+      }
+      return false;
+      break;
+    case TMUXSWAPPANE: // Run vim selected line in lower pane
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("a"));
+        SEND_STRING("l");
+      }
+      return false;
+      break;
+    case TMUXLASTWINDOW: // Run vim selected line in lower pane
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("a"));
+        SEND_STRING(SS_LCTRL("o"));
       }
       return false;
       break;
