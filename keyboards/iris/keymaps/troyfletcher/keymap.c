@@ -30,7 +30,7 @@ enum custom_keycodes {
 
 #define KC_LOWR LOWER
 #define KC_RASE RAISE
-#define KC_MOUS MO(_MOUSE)
+#define KC_MOUS TT(_MOUSE)
 #define KC_NUMP TT(_NUMPAD)
 #define KC_RST RESET
 #define KC_BL_S BL_STEP
@@ -49,7 +49,11 @@ enum custom_keycodes {
 #define KC_PTTY LSFT(KC_INS)        // Paste into a putty terminal
 #define KC_CLOS LALT(KC_F4)         // Close
 #define KC_CADL LCTL(LALT(KC_DEL))  // Ctrl+Alt+Del
-#define KC_WNLK LGUI(KC_L)          // Windows Lock
+#define KC_WNLK LGUI(KC_L)          // Lock Session
+#define KC_UNDO LCTL(KC_Z)          // UNDO
+#define KC_CUT LCTL(KC_X)          // CUT
+#define KC_COPY LCTL(KC_C)          // COPY
+#define KC_PASTE LCTL(KC_V)          // PASTE
 
 //  _____                _____ _      _       _               
 // |_   _| __ ___  _   _|  ___| | ___| |_ ___| |__   ___ _ __ 
@@ -70,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
    SFTBKS, Z  , X  , C  , V  , B  ,NUMP,     BSLS, N  , M  ,COMM,DOT ,SLSH,RBRC,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                      LGUI,CTLESC,LOWR,       SPC,RASE,BSLS
+                      LGUI,CTLESC,LOWR,       SPC,RASE,    
   //                  `----+----+----'        `----+----+----'
   ),
 
@@ -78,11 +82,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
      TILD,EXLM, AT ,HASH,DLR ,PERC,               CIRC,AMPR,ASTR,LPRN,RPRN,BSPC,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     TAB ,ESC ,MOUS,ENT ,APP ,PTTY,                   ,MUTE,TMSP,TMLW,MPLY,LPRN,
+     TAB ,ESC ,    ,ENT ,APP ,PTTY,                   ,MUTE,TMSP,TMLW,MPLY,LPRN,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
     LCTL,ALTTB,TAB,RGHT,BRTBL,BRTBR,              LEFT,DOWN ,UP ,RGHT,VOLD,VOLU,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-     LSFT,NUMP,    ,    ,    ,    ,    ,     DLR, DEL, BSPC,    ,    ,PERC,RPRN,
+     LSFT,NUMP,    ,    ,    ,MOUS,    ,         , DEL,BSPC,    ,    ,PERC,RPRN,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                            ,    ,LOWR,             ,    ,    
   //                  `----+----+----'        `----+----+----'
@@ -94,9 +98,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
          ,EMAL,VIMW,EQL ,AMPR,TILD,               HOME,UNDS,ASTR,END ,PLUS,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     LCTL,AT  ,MNXT,MINS,    ,GRAVE,              HOME,PGDN,PGUP,END ,CIRC,BSLS,
+     LCTL,AT  ,MNXT,MINS,    ,GRAVE,              HOME,PGDN,PGUP,END ,DLR ,    ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-     LSFT,    ,CLOS,CALC,TMLR,EXLM,CADL,     WNLK,PLUS,HASH,    ,    ,    ,    ,
+     LSFT,    ,CLOS,CALC,TMLR,EXLM,CADL,     WNLK,PLUS,HASH,    ,CIRC,    ,    ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                            ,RALT,    ,             ,RASE,    
   //                  `----+----+----'        `----+----+----'
@@ -104,15 +108,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_MOUSE] = KC_KEYMAP(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-         ,    ,    ,    ,    ,    ,               ACL0,ACL1,ACL2, F9 ,F10 ,RST ,
+         ,    ,    ,    ,    ,    ,               ACL0,ACL1,ACL2,    ,    ,RST ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,MOUS,    ,    ,    ,                   ,    ,    ,SLCK,PSCR,    ,
+     TAB ,PGUP,BRTBL,UP,BRTBR,DEL ,                   ,    ,    ,SLCK,PSCR,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,               MS_L,MS_D,MS_U,MS_R,BTN1,BTN2,
+     RALT,PGDN,LEFT,DOWN,RGHT,BSPC,               MS_L,MS_D,MS_U,MS_R,BTN1,BTN2,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,    ,     WH_U,PLUS,END ,    ,    ,    ,    ,
+     LSFT,UNDO,CUT ,COPY,PASTE,MOUS,    ,     WH_U,PLUS,END ,    ,    ,    ,    ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                           ,    ,    ,        WH_D,    ,    
+                       LGUI,CTLESC,SPC,        WH_D,    ,    
   //                  `----+----+----'        `----+----+----'
   ),
 
@@ -122,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
      TAB ,PGUP,BRTBL,UP,BRTBR,DEL ,               SLSH, 7  , 8  , 9  ,MINS,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-   ALTENT,PGDN,LEFT,DOWN,RGHT,BSPC,               ASTR, 4  , 5  , 6  ,PLUS,    ,
+   ALTENT,PGDN,LEFT,DOWN,RGHT,BSPC,               ASTR, 4  , 5  , 6  ,PLUS,TAB ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
      LSFT,UNDO,CUT ,COPY,PASTE,   ,NUMP,         ,BSPC, 1  , 2  , 3  ,ENT ,    ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
