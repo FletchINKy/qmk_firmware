@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
      RALT, A  , S  , D  , F  , G  ,                H  , J  , K  , L  ,SCLN,QUOT,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-   SFTBKS, Z  , X  , C  , V  , B  ,NUMP,     BSLS, N  , M  ,COMM,DOT ,SLSH,RBRC,
+     BSPS, Z  , X  , C  , V  , B  ,NUMP,     BSLS, N  , M  ,COMM,DOT ,SLSH,RBRC,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                       LGUI,CTLESC,LOWR,       SPC,RASE,    
   //                  `----+----+----'        `----+----+----'
@@ -82,11 +82,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
      TILD,EXLM, AT ,HASH,DLR ,PERC,               CIRC,AMPR,ASTR,LPRN,RPRN,BSPC,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     TAB ,ESC ,    ,ENT ,APP ,PTTY,                   ,MUTE,TMSP,TMLW,MPLY,LPRN,
+     TAB ,ESC ,MOUS,ENT ,APP ,PTTY,                   ,MUTE,TMSP,TMLW,MPLY,LPRN,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
     LCTL,ALTTB,TAB,RGHT,BRTBL,BRTBR,              LEFT,DOWN ,UP ,RGHT,VOLD,VOLU,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-     LSFT,NUMP,    ,    ,    ,MOUS,    ,         , DEL,BSPC,    ,    ,PERC,RPRN,
+     LSFT,NUMP,    ,    ,MOUS,MOUS,    ,         , DEL,BSPC,    ,    ,PERC,RPRN,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                            ,    ,LOWR,             ,    ,    
   //                  `----+----+----'        `----+----+----'
