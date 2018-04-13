@@ -51,9 +51,9 @@ enum custom_keycodes {
 #define KC_CADL LCTL(LALT(KC_DEL))  // Ctrl+Alt+Del
 #define KC_WNLK LGUI(KC_L)          // Lock Session
 #define KC_UNDO LCTL(KC_Z)          // UNDO
-#define KC_CUT LCTL(KC_X)          // CUT
+#define KC_CUT LCTL(KC_X)           // CUT
 #define KC_COPY LCTL(KC_C)          // COPY
-#define KC_PASTE LCTL(KC_V)          // PASTE
+#define KC_PASTE LCTL(KC_V)         // PASTE
 
 //  _____                _____ _      _       _               
 // |_   _| __ ___  _   _|  ___| | ___| |_ ___| |__   ___ _ __ 
@@ -72,9 +72,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
      RALT, A  , S  , D  , F  , G  ,                H  , J  , K  , L  ,SCLN,QUOT,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-     BSPS, Z  , X  , C  , V  , B  ,NUMP,     BSLS, N  , M  ,COMM,DOT ,SLSH,RBRC,
+     LSFT, Z  , X  , C  , V  , B  ,NUMP,     BSLS, N  , M  ,COMM,DOT ,SLSH,RBRC,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                      LGUI,CTLESC,LOWR,       SPC,RASE,    
+                      NUMP,CTLESC,LOWR,       SPC,  RASE,LGUI,
   //                  `----+----+----'        `----+----+----'
   ),
 
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
      LSFT,NUMP,    ,    ,MOUS,MOUS,    ,         , DEL,BSPC,    ,    ,PERC,RPRN,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                           ,    ,LOWR,             ,    ,    
+                           ,    ,LOWR,             ,    ,LGUI    
   //                  `----+----+----'        `----+----+----'
   ),
 
